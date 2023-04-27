@@ -1,123 +1,28 @@
-    import org.jetbrains.annotations.NotNull;
-    import java.util.Scanner;
-    public class Main {
-        static boolean falla = true;
-        public static void main(String[] args) {
-            int num1 = 3;
-            int num2 = 2;
-            int num3 = 43;
-            String letra1 = "l";
-            int[] Valores = {num1,num2,num3};
-    
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-                ValoresPreIngresados(Valores[0], Valores[1], Valores[2], letra1);
-                if (falla != false) {
-
-                    System.out.println("Codigo Ejecutado Exitosamente");
-
-                }else if (falla != true){
-                    ValoresPorConsola(new Scanner(System.in));
-                }
-
-    
-    
-    
+// Haga un main donde por parámetro envíe la ruta de un archivo. Ese archivo debe contener
+//números. El programa debe escribir por consola la suma de esos números.
+public class Main {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.err.println("Debe proporcionar la ruta del archivo como parámetro");
+            System.exit(1);
         }
-    
-        public static void ValoresPreIngresados(int num1, int num2, int num3, @NotNull String letra) {
-    
-            try {
-                int[] numeros = {num1, num2, num3};
-                if (letra.equalsIgnoreCase("A")) {
-                    for (int i = 0; i < numeros.length - 1; i++) {
-                        for (int j = 0; j < numeros.length - i - 1; j++) {
-                            if (numeros[j] > numeros[j + 1]) {
-                                int temp = numeros[j];
-                                numeros[j] = numeros[j + 1];
-                                numeros[j + 1] = temp;
-                            }
-                        }
-                    }
 
-                    System.out.print("Los números ordenados son: ");
-                    for (int num : numeros) {
-                        System.out.print(num + " ");
-                    }
-                } else if (letra.equalsIgnoreCase("D")) {
-                    for (int i = 0; i < numeros.length - 1; i++) {
-                        for (int j = 0; j < numeros.length - i - 1; j++) {
-                            if (numeros[j] < numeros[j + 1]) {
-                                int temp = numeros[j];
-                                numeros[j] = numeros[j + 1];
-                                numeros[j + 1] = temp;
-                            }
-                        }
-                    }
-                    System.out.print("Los números ordenados son: ");
-                    for (int num : numeros) {
-                        System.out.print(num + " ");
-                    }
+        String rutaArchivo = ".src/Numero.txt";
 
-                }  else{
-                    System.out.println("La Letra Ingresada es inválida");
-                    boolean falla = true;
-                }
-
-
-
-
-            } catch (Exception e){
-                boolean falla = true;
-                System.out.println("Ha ocurrido un error: " + e.getMessage());
+        try (Scanner scanner = new Scanner(new File(rutaArchivo)).useDelimiter("[^0-9]+")) {
+            int suma = 0;
+            while (scanner.hasNext()) {
+                int numero = scanner.nextInt();
+                suma += numero;
             }
+            System.out.println("La suma de los números en el archivo es: " + suma);
+        } catch (FileNotFoundException e) {
+            System.err.println("Archivo no encontrado: " + rutaArchivo);
+            System.exit(1);
         }
-    
-    
-        public static void ValoresPorConsola (Scanner scanner){
-                System.out.print("Ingrese el 1er número: ");
-                int nro1;
-                    nro1 = scanner.nextInt();
-
-                System.out.print("Ingrese el 2do número: ");
-                int nro2;
-                    nro2 = scanner.nextInt();
-
-                System.out.print("Ingrese el 3er número: ");
-                int nro3;
-                    nro3 = scanner.nextInt();
-
-                System.out.print("Ingrese 'A' para orden ascendente o 'D' para orden descendente: ");
-                String letra = scanner.next();
-
-                int[] nros = {nro1, nro2, nro3};
-    
-                if (letra.equalsIgnoreCase("A")) {
-                    for (int i = 0; i < nros.length - 1; i++) {
-                        for (int j = 0; j < nros.length - i - 1; j++) {
-                            if (nros[j] > nros[j + 1]) {
-                                int temp = nros[j];
-                                nros[j] = nros[j + 1];
-                                nros[j + 1] = temp;
-                            }
-                        }
-                    }
-                } else if (letra.equalsIgnoreCase("D")) {
-                    for (int i = 0; i < nros.length - 1; i++) {
-                        for (int j = 0; j < nros.length - i - 1; j++) {
-                            if (nros[j] < nros[j + 1]) {
-                                int temp = nros[j];
-                                nros[j] = nros[j + 1];
-                                nros[j + 1] = temp;
-                            }
-                        }
-                    }
-                } else {
-                    System.out.println("La letra ingresada no es válida. Por favor ingrese A o D.");
-                }
-    
-                System.out.print("Los números ordenados son: ");
-                for (int num : nros) {
-                    System.out.print(num + " ");
-                }
-            }
     }
+}
