@@ -6,12 +6,7 @@ import java.util.Scanner;
 //números. El programa debe escribir por consola la suma de esos números.
 public class Main {
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.err.println("Debe proporcionar la ruta del archivo como parámetro");
-            System.exit(1);
-        }
-
-        String rutaArchivo = ".src/Numero.txt";
+        String rutaArchivo = "src\\Numeros.txt";
 
         try (Scanner scanner = new Scanner(new File(rutaArchivo)).useDelimiter("[^0-9]+")) {
             int suma = 0;
@@ -26,3 +21,6 @@ public class Main {
         }
     }
 }
+
+     //   D:\Users\Irene\Desktop\Java\Trabajo Integrador\Clase5-ProgramasyArchivos
+     //   D:\Users\Irene\Desktop\Java\Trabajo Integrador\Clase5-ProgramasyArchivos\src
