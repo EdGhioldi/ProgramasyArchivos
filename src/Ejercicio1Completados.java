@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 public class Ejercicio1Completados {
 // EJERCICIO 1.A
 /*
@@ -227,5 +233,7 @@ represente ascendente o descendente y los muestre ordenados por tal criterio.
     }
 
  */
-}
 
+
+
+}

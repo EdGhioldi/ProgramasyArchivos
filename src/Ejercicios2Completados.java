@@ -33,9 +33,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 //Al programa anterior agreguele un parámetro para que la operación pueda ser suma o multiplicación
+
+ 
 public class Main {
     public static void main(String[] args) {
-        int parametro = 6; // el parametro 1 suma, cualquier otro multiplica.
+        int parametro = 6; // el parametro 1 indica SUMA, cualquier otro MULTIPLICACION.
         String rutaArchivo = "src\\Numeros.txt";
 
         try{
